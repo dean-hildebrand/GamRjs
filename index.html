@@ -20,22 +20,53 @@
         <span class="nav-icon">
           <i class="fas fa-gamepad fa-5x"></i>
         </span>
+        <!-- maybe logo image not title -->
+        <title>GamR</title>
+        <div class="cart-btn">
+          <span class="nav-icon">
+            <i class="fas fa-cart-plus fa-3x"></i>
+          </span>
+          <div class="cart-items">0</div>
+        </div>
       </div>
     </nav>
     <!-- end of navbar -->
     <!-- jumbotron -->
-    <header class="jumbotron">
+    <header class="hero">
       <div class="banner">
-        <div class="banner-title">shop pc parts</div>
+        <div class="banner-title">shop parts</div>
       </div>
     </header>
     <!-- end of jumbotron -->
-    <section class='pc-parts'>
+    <!-- computer parts -->
+    <section class="products">
       <div class="section-title">
         <h2>Our Parts</h2>
-        <div class="parts-center">
+      </div>
+      <div class="products-center">
         <!-- add parts with js -->
+      </div>
+    </section>
+    <!-- end of computer parts -->
+    <!-- cart -->
+    <div class="cart-overlay">
+      <div class="cart">
+        <span class="close-cart"><i class="fas fa-window-close"></i></span>
+        <h2>Your Cart</h2>
+        <div class="cart-content">
+          <!-- cart item -->
+          <!-- <div class="cart-item">
+
+        </div> -->
+          <!-- end of cart item -->
+        </div>
+        <div class="cart-footer">
+          <h3>Your total : $ <span class="cart-total"></span></h3>
+          <button class="banner-btn clear-cart">clear cart</button>
         </div>
       </div>
+    </div>
+    <!-- end of cart -->
+    <script src='app.js'></script>
   </body>
 </html>
