@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "sys": { "id": "1" },
+      "fields": {
+        "title": "headphones",
+        "price": 29.99,
+        "image": { "fields": { "file": { "url": "./images/headphones.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "2" },
+      "fields": {
+        "title": "keyboard",
+        "price": 12.99,
+        "image": { "fields": { "file": { "url": "./images/keyboard.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "3" },
+      "fields": {
+        "title": "memory card",
+        "price": 12.99,
+        "image": { "fields": { "file": { "url": "./images/memory-card.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "4" },
+      "fields": {
+        "title": "monitor",
+        "price": 22.99,
+        "image": { "fields": { "file": { "url": "./images/monitor.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "5" },
+      "fields": {
+        "title": "monitor 2",
+        "price": 88.99,
+        "image": { "fields": { "file": { "url": "./images/monitor2.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "6" },
+      "fields": {
+        "title": "whole setup",
+        "price": 32.99,
+        "image": { "fields": { "file": { "url": "./images/setup.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "7" },
+      "fields": {
+        "title": "controller",
+        "price": 45.99,
+        "image": { "fields": { "file": { "url": "./images/controller.jpg" } } }
+      }
+    },
+    {
+      "sys": { "id": "8" },
+      "fields": {
+        "title": "gaming chair",
+        "price": 33.99,
+        "image": { "fields": { "file": { "url": "./images/chair.jpg" } } }
+      }
+    }
+  ]
+}
