@@ -5,7 +5,7 @@
       "fields": {
         "title": "headphones",
         "price": 29.99,
-        "image": { "fields": { "file": { "url": "./images/headphones.jpg" } } }
+        "image": { "fields": { "file": { "url": "./images/headphones.jpeg" } } }
       }
     },
     {

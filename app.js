@@ -28,7 +28,8 @@ class Products {
       //   // destructuring object
         const { title, price } = item.fields;
         const { id } = item.sys;
-        const { image } = item.fields.image.fields.file.url
+        const { image } = item.fields
+        console.log(image.fields.file.url);
         return { title, price, id, image};
       });
       return products;
@@ -40,40 +41,39 @@ class Products {
 // ------------------------------------------------------------------
 // display products -----------------------------------------------
 class UI {
-  // displayProducts(products) {
-  //   let result = "";
-  //   products.forEach(product => {
-  //     result += `
-  //     <!-- single product -->
-  //     <article class="product">
-  //       <div class="img-container">
-  //         <img
-  //           src=${product.image}
-  //           alt="product"
-  //           class="product-img"
-  //         />
-  //         <button class="bag-btn" data-id=${product.id}>
-  //           <i class="fas fa-shopping-cart"></i>Add to cart
-  //         </button>
-  //       </div>
-  //       <h3>${product.title}</h3>
-  //       <h4>$${product.price}</h4>
-  //     </article>
-  //     <!-- end of single product -->
-  //     `;
-  //   })
-  //   productsDOM.innerHTML = result
-  // }
+  displayProducts(products) {
+    // console.log(products);
+    let result = "";
+    products.forEach(product => {
+      result += `
+      <!-- single product -->
+      <article class="product">
+        <div class="img-container">
+          <img
+            src=${product.image.fields.file.url}
+            alt="product"
+            class="product-img"
+          />
+          <button class="bag-btn" data-id=${product.id}>
+            <i class="fas fa-shopping-cart"></i>Add to cart
+          </button>
+        </div>
+        <h3>${product.title}</h3>
+        <h4>$${product.price}</h4>
+      </article>
+      <!-- end of single product -->
+      `;
+    })
+    productsDOM.innerHTML = result
+  }
 }
 // end UI class to display products---------------------------------------------------
-class Storage {
-
-}
+class Storage {}
 
 document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   const products = new Products();
 
-  products.getProducts().then(data => console.log(data))
+  products.getProducts().then(products => ui.displayProducts(products))
 
 });
