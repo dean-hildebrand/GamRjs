@@ -1,14 +1,6 @@
 {
   "items": [
     {
-      "sys": { "id": "1" },
-      "fields": {
-        "title": "headphones",
-        "price": 29.99,
-        "image": { "fields": { "file": { "url": "./images/headphones.jpeg" } } }
-      }
-    },
-    {
       "sys": { "id": "2" },
       "fields": {
         "title": "keyboard",

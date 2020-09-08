@@ -29,7 +29,6 @@ class Products {
         const { title, price } = item.fields;
         const { id } = item.sys;
         const { image } = item.fields
-        console.log(image.fields.file.url);
         return { title, price, id, image};
       });
       return products;
@@ -42,7 +41,6 @@ class Products {
 // display products -----------------------------------------------
 class UI {
   displayProducts(products) {
-    // console.log(products);
     let result = "";
     products.forEach(product => {
       result += `
@@ -68,12 +66,20 @@ class UI {
   }
 }
 // end UI class to display products---------------------------------------------------
-class Storage {}
+// local storage
+class Storage {
+  static saveProducts(products){
+    localStorage.setItem("products", JSON.stringify(products))
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   const products = new Products();
 
-  products.getProducts().then(products => ui.displayProducts(products))
+  products.getProducts().then(products => {
+    ui.displayProducts(products)
+    Storage.saveProducts(products)
+  })
 
 });
