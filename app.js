@@ -64,6 +64,31 @@ class UI {
     })
     productsDOM.innerHTML = result
   }
+  getBagButtons(){
+    const buttons = [...document.querySelectorAll(".bag-btn")]
+    buttons.forEach(button => {
+      let id = button.dataset.id;
+      // checks the id's in the cart with the button id
+      let inCart = cart.find(item => item.id === id)
+      if (inCart) {
+        button.innerText = "In Cart"
+        button.disabled = true
+      } else {
+        button.addEventListener('click', e => {
+          e.target.innerText = "In Cart"
+          e.target.disabled = true
+          // get the product
+          // add product to cart
+          // save cart in local storage
+          // set cart values
+          // display cart item
+          // show the cart with overlay
+        })
+      }
+    })
+
+    // console.log(buttons);
+  }
 }
 // end UI class to display products---------------------------------------------------
 // local storage
@@ -80,6 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
   products.getProducts().then(products => {
     ui.displayProducts(products)
     Storage.saveProducts(products)
+  }).then(() => {
+    ui.getBagButtons(() => {
+
+    })
   })
 
 });
