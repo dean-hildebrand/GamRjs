@@ -86,13 +86,26 @@ class UI {
         // save cart in local storage
         Storage.saveCart(cart)
         // set cart values
-        
+        this.setCartValues(cart)
         // display cart item
         // show the cart with overlay
       });
     });
 
     // console.log(buttons);
+  }
+  setCartValues(cart) {
+    // maps arr multiply price by amount and adds to amount
+    let tempTotal = 0
+    let itemsTotal = 0
+    cart.map( item => {
+      tempTotal += item.price * item.amount
+      itemsTotal += item.amount
+    })
+    // toFixed gives 2 decimals
+    cartTotal.innerText = parseFloat(tempTotal.toFixed(2))
+    cartItems.innerText = itemsTotal
+    console.log(cartTotal, cartItems);
   }
 }
 // end UI class to display products---------------------------------------------------
