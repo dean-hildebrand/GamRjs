@@ -186,7 +186,6 @@ class UI {
     let cartItems = cart.map((item) => item.id);
     cartItems.forEach((id) => this.removeItem(id));
     // while there are children in cartContent div, keep removing until length is 0
-    console.log(cartContent.children);
     while (cartContent.children.length > 0) {
       cartContent.removeChild(cartContent.children[0]);
     }
