@@ -68,7 +68,7 @@ class UI {
     const buttons = [...document.querySelectorAll(".bag-btn")];
     // adds all the buttons to global variable to use in multiple functions
     buttonsDOM = buttons
-    buttons.forEach((button) => {
+    buttons.forEach( button => {
       let id = button.dataset.id;
       // checks the id's in the cart with the button id
       let inCart = cart.find((item) => item.id === id);
@@ -83,9 +83,10 @@ class UI {
         let cartItem = {...Storage.getProduct(id), amount: 1}
         // add product to cart
         cart = [...cart, cartItem]
-        console.log(cart);
         // save cart in local storage
+        Storage.saveCart(cart)
         // set cart values
+        
         // display cart item
         // show the cart with overlay
       });
@@ -104,6 +105,9 @@ class Storage {
     // use localstorage to find the product clicked on by the id
     let products = JSON.parse(localStorage.getItem('products'))
     return products.find(product => product.id === id)
+  }
+  static saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart))
   }
 }
 
