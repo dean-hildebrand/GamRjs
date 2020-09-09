@@ -67,8 +67,8 @@ class UI {
   getBagButtons() {
     const buttons = [...document.querySelectorAll(".bag-btn")];
     // adds all the buttons to global variable to use in multiple functions
-    buttonsDOM = buttons
-    buttons.forEach( button => {
+    buttonsDOM = buttons;
+    buttons.forEach((button) => {
       let id = button.dataset.id;
       // checks the id's in the cart with the button id
       let inCart = cart.find((item) => item.id === id);
@@ -80,36 +80,35 @@ class UI {
         e.target.innerText = "In Cart";
         e.target.disabled = true;
         // get the product
-        let cartItem = {...Storage.getProduct(id), amount: 1}
+        let cartItem = { ...Storage.getProduct(id), amount: 1 };
         // add product to cart
-        cart = [...cart, cartItem]
+        cart = [...cart, cartItem];
         // save cart in local storage
-        Storage.saveCart(cart)
+        Storage.saveCart(cart);
         // set cart values
-        this.setCartValues(cart)
+        this.setCartValues(cart);
         // display cart item
-        this.addCartItem(cartItem)
+        this.addCartItem(cartItem);
         // show the cart with overlay
+        this.showCart()
       });
     });
-
-    // console.log(buttons);
   }
   setCartValues(cart) {
     // maps arr multiply price by amount and adds to amount
-    let tempTotal = 0
-    let itemsTotal = 0
-    cart.map( item => {
-      tempTotal += item.price * item.amount
-      itemsTotal += item.amount
-    })
+    let tempTotal = 0;
+    let itemsTotal = 0;
+    cart.map((item) => {
+      tempTotal += item.price * item.amount;
+      itemsTotal += item.amount;
+    });
     // toFixed gives 2 decimals
-    cartTotal.innerText = parseFloat(tempTotal.toFixed(2))
-    cartItems.innerText = itemsTotal
+    cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+    cartItems.innerText = itemsTotal;
   }
   addCartItem(item) {
-    const div = document.createElement('div')
-    div.classList.add('cart-item')
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
     div.innerHTML = `<img src=${item.image.fields.file.url} alt="product" />
     <div>
     <h4>${item.title}</h4>
@@ -117,12 +116,15 @@ class UI {
     <span class="remove-item" data-id=${item.id}>remove</span>
     </div>
     <div>
-    <i class="fas fa-chevron-up" data.id=${item.id}></i>
-    <p class="item-amount>${item.amount}</p>"
-    <i class="fas fa-chevron-down" ${item.id}></i>
-    </div>`
-    cartContent.appendChild(div)
-    console.log(cartContent);
+    <i class="fas fa-chevron-up" data-id=${item.id}></i>
+    <p class="item-amount">${item.amount}</p>
+    <i class="fas fa-chevron-down" data-id${item.id}></i>
+    </div>`;
+    cartContent.appendChild(div);
+  }
+  showCart() {
+    cartOverlay.classList.add('transparentBcg')
+    cartDOM.classList.add('showCart')
   }
 }
 // end UI class to display products---------------------------------------------------
@@ -133,11 +135,11 @@ class Storage {
   }
   static getProduct(id) {
     // use localstorage to find the product clicked on by the id
-    let products = JSON.parse(localStorage.getItem('products'))
-    return products.find(product => product.id === id)
+    let products = JSON.parse(localStorage.getItem("products"));
+    return products.find((product) => product.id === id);
   }
   static saveCart(cart) {
-    localStorage.setItem('cart', JSON.stringify(cart))
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 }
 
