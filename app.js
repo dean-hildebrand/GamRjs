@@ -1,6 +1,6 @@
 //  variables
 
-const cartBtn = document.querySelector("cart-btn");
+const cartBtn = document.querySelector(".cart-btn");
 const closeCartBtn = document.querySelector(".close-cart");
 const clearCartBtn = document.querySelector(".clear-cart");
 const cartDOM = document.querySelector(".cart");
@@ -118,7 +118,7 @@ class UI {
     <div>
     <i class="fas fa-chevron-up" data-id=${item.id}></i>
     <p class="item-amount">${item.amount}</p>
-    <i class="fas fa-chevron-down" data-id${item.id}></i>
+    <i class="fas fa-chevron-down" data-id=${item.id}></i>
     </div>`;
     cartContent.appendChild(div);
   }
@@ -131,7 +131,7 @@ class UI {
     cart = Storage.getCart();
     this.setCartValues(cart);
     this.populateCart(cart);
-    // cartBtn.addEventListener('click', this.showCart);
+    cartBtn.addEventListener("click", this.showCart);
     closeCartBtn.addEventListener("click", this.hideCart);
   }
   populateCart(cart) {
@@ -142,7 +142,67 @@ class UI {
     cartDOM.classList.remove("showCart");
   }
   cartLogic() {
-
+    // clear cart button
+    clearCartBtn.addEventListener("click", () => {
+      this.clearCart();
+    });
+    // cart functionality
+    cartContent.addEventListener("click", (e) => {
+      // check if e.target contains the class name
+      if (e.target.classList.contains("remove-item")) {
+        let removeItem = e.target;
+        let id = removeItem.dataset.id;
+        // traverses up the dom to remove the whole item
+        cartContent.removeChild(removeItem.parentElement.parentElement);
+        this.removeItem(id);
+      } else if (e.target.classList.contains("fa-chevron-up")) {
+        let add = e.target;
+        let id = add.dataset.id;
+        let tempItem = cart.find((item) => item.id === id);
+        tempItem.amount = tempItem.amount + 1;
+        // save new cart value in localStorage
+        Storage.saveCart(cart);
+        // set the new values
+        this.setCartValues(cart);
+        // change the amount on the DOM
+        add.nextElementSibling.innerText = tempItem.amount;
+      } else if (e.target.classList.contains("fa-chevron-down")) {
+        let minus = e.target;
+        let id = minus.dataset.id;
+        let tempItem = cart.find((item) => item.id === id);
+        tempItem.amount = tempItem.amount - 1;
+        if (tempItem.amount > 0) {
+          Storage.saveCart(cart);
+          this.setCartValues(cart);
+          minus.previousElementSibling.innerText = tempItem.amount;
+        } else {
+          cartContent.removeChild(minus.parentElement.parentElement);
+          this.removeItem(id);
+        }
+      }
+    });
+  }
+  clearCart() {
+    let cartItems = cart.map((item) => item.id);
+    cartItems.forEach((id) => this.removeItem(id));
+    // while there are children in cartContent div, keep removing until length is 0
+    console.log(cartContent.children);
+    while (cartContent.children.length > 0) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+    this.hideCart();
+  }
+  removeItem(id) {
+    // filter by id then set the new values with previous method and save
+    cart = cart.filter((item) => item.id != id);
+    this.setCartValues(cart);
+    Storage.saveCart(cart);
+    let button = this.getSingleButton(id);
+    button.disabled = false;
+    button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+  }
+  getSingleButton(id) {
+    return buttonsDOM.find((button) => button.dataset.id === id);
   }
 }
 // end UI class to display products---------------------------------------------------
@@ -181,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Storage.saveProducts(products);
     })
     .then(() => {
-      ui.getBagButtons(() => {});
+      ui.getBagButtons();
+      ui.cartLogic();
     });
 });
