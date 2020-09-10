@@ -32,10 +32,10 @@ background: rgb(0, 0, 0);
   position: absolute;
   top: -8px;
   right: -8px;
-  background: var(--primaryColor);
+  background: rgba(255, 255, 240);
   padding: 0 5px;
   border-radius: 30%;
-  color: #CCC;
+  color: black;
 }
 /* ------------ end of navbar ------------------*/
 /* ----------- jumbotron ------------- */
@@ -145,7 +145,7 @@ background: rgb(0, 0, 0);
   right: 0;
   width: 100%;
   height: 100%;
-  transition: var(--mainTransition);
+  transition: all 0.3s linear;
   background: rgb(240, 157, 81, 0.5);
   z-index: 2;
   /* hides the cart */
@@ -219,10 +219,19 @@ background: rgb(0, 0, 0);
 }
 .fa-chevron-up,
 .fa-chevron-down {
-  color: var(--primaryColor);
+  color: #f09d51;
   cursor: pointer;
 }
 /*---------- End of Cart Item -------------------- */
+
+.clear-cart {
+  text-transform: capitalize;
+  background-color: #f09d51;
+  letter-spacing: 0.1rem;
+  padding: 15px, 32px
+  border: none;
+  font-size: 20px;
+}
 
 .cart-footer {
   margin-top: 2rem;
